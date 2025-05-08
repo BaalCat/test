@@ -199,124 +199,169 @@ A cross-platform graphical interface and backend system for processing and strea
 ### Windows Setup
 
 1. **Download the GUI project from the UiS SubSea repo on Github:**
-    - Link: [Your Repo Link Here](https://github.com/UiS-SubSea/your-repo-name)
+   - Link: [Your Repo Link Here](https://github.com/UiS-SubSea/your-repo-name)
 
 2. **Download Python version 3.7.0**
-    - Visit the [Python 3.7.0 Release Page](https://www.python.org/downloads/release/python-370/)
-    - Download the installer for your Windows version (e.g., *Windows x86-64 executable installer*)
-    - Run the installer and **make sure to check** the “Add Python to PATH” option during installation
+   - Go to the [Python 3.7.0 Release Page](https://www.python.org/downloads/release/python-370/)
+   - Download the installer for your Windows version (e.g. *Windows x86-64 executable installer*).
+   - Install Python and **ensure** the "Add Python to PATH" option is **checked** during installation.
 
-3. **Install NumPy in Python 3.7** (required for compiling OpenCV)
+3. **Install NumPy in Python 3.7** (needed to compile OpenCV).
 
-4. **Open the folder `BachelorGUI2025\Backend` in a terminal**
+4. **Open the folder `BachelorGUI2025\Backend` in a terminal.**
 
 5. **Create a virtual environment:**
-    ```bash
-    python3.7 -m venv myenv
-    ```
+   ```bash
+   python3.7 -m venv myenv
+   ```
 
 6. **Activate the virtual environment:**
+   ```bash
+   .\myenv\Scripts\activate
+   ```
+   - To deactivate:
+     ```bash
+     deactivate
+     ```
+
+7. **Navigate to the PythonScripts folder:**
+   ```bash
+   cd PythonScripts
+   ```
+
+8. **Install dependencies:**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+9. **Manually compile OpenCV with GStreamer support:**
+
+   - **Download and install CMake 4.0.0** from the [CMake Download Page](https://cmake.org/download/)
+   - Choose: `cmake-4.0.0-windows-x86_64.msi`
+
+   - **Download OpenCV 4.7.0 and OpenCV Contrib**, and create a `build` folder inside the OpenCV directory.
+
+   - **Install GStreamer 1.24.12**:
+     - [GStreamer 1.24.12 (MSVC) Download Page](https://gstreamer.freedesktop.org/data/pkg/windows/1.24.12/msvc/)
+     - Download and install both:
+       - `gstreamer-1.0-msvc-x86_64-1.24.12.msi`
+       - `gstreamer-1.0-devel-msvc-x86_64-1.24.12.msi`
+     - Add the GStreamer `bin` folder to your system PATH.
+
+   - **Install FFmpeg** from [FFmpeg Builds](https://www.gyan.dev/ffmpeg/builds/)
+
+   - **Install Visual Studio 2022 (version 17)** from [Visual Studio](https://visualstudio.microsoft.com/)
+
+   - **Compile OpenCV using CMake GUI:**
+
+     1. Open `CMake-gui`
+     2. Set "Browse Source..." to the OpenCV folder.
+     3. Set "Browse Build..." to the `build` folder.
+
+     <div align="center">
+       <img src="assets/images/tut01.png" alt="Step 1-3 in CMake" width="600"/>
+     </div>
+
+     4. Click **Configure**, choose *Visual Studio 17*, then **Finish**.
+
+     <div align="center">
+       <img src="assets/images/tut02.png" alt="Step 4 compiler selection" width="600"/>
+     </div>
+
+     5. Wait for analysis to complete. Red entries will appear.
+
+     6. Expand the `WITH` section, enable necessary features.
+
+     <div align="center">
+       <img src="assets/images/tut03.png" alt="WITH configuration 1" width="600"/>
+       <img src="assets/images/tut04.png" alt="WITH configuration 2" width="600"/>
+     </div>
+
+     7. Expand the `BUILD` section and adjust as needed.
+
+     <div align="center">
+       <img src="assets/images/tut05.png" alt="BUILD config 1" width="600"/>
+       <img src="assets/images/tut06.png" alt="BUILD config 2" width="600"/>
+     </div>
+
+     8. Expand `ENABLE`, disable `ENABLE_SOLUTION_FOLDERS`.
+
+     <div align="center">
+       <img src="assets/images/tut07.png" alt="ENABLE configuration" width="600"/>
+     </div>
+
+     9. Ensure GStreamer fields are present and set correctly.
+
+     <div align="center">
+       <img src="assets/images/tut08.png" alt="GStreamer configuration" width="600"/>
+     </div>
+
+     10. Check the `PYTHON3` field paths.
+
+     <div align="center">
+       <img src="assets/images/tut09.png" alt="Python3 configuration" width="600"/>
+     </div>
+
+     11. Add `OPENCV_EXTRA_MODULES_PATH` pointing to the OpenCV Contrib modules folder.
+
+     12. Click **Configure** again. Scroll the log window to check for `YES` next to GStreamer.
+
+     <div align="center">
+       <img src="assets/images/tut11.png" alt="Final configuration result" width="600"/>
+     </div>
+
+     13. If all is good, click **Generate**, then **Open Project**.
+
+     14. Set build mode to **Release**.
+
+     15. In Solution Explorer, right-click **Solution** or **ALL_BUILD** → **Build**.
+
+     16. Once done, right-click **INSTALL** and build it. This installs OpenCV-Python.
+
+     <div align="center">
+       <img src="assets/images/tut12.png" alt="Visual Studio Build steps" width="600"/>
+     </div>
+
+     17. Copy the `cv2` folder from OpenCV into your virtual environment:
+     ```
+     BachelorGUI2025\Backend\myenv\Lib\site-packages
+     ```
+
+     18. **Verify installation:**
+     ```bash
+     python -c "import cv2; print(cv2.__version__)"
+     ```
+
+10. **Install Node.js (v18+), npm, and .NET (v8+):**
+    > ⚠️ Replace `sudo apt` with Windows installers — this was meant for Linux.
+
+    - Download [Node.js 18](https://nodejs.org/en/)
+    - Install [.NET SDK 8.0](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
+
+11. **Navigate to the Backend folder and run:**
     ```bash
-    .\myenv\Scripts\activate
-    ```
-    To deactivate later:
-    ```bash
-    deactivate
-    ```
-
-7. **Navigate to the `PythonScripts` folder:**
-    ```bash
-    cd PythonScripts
-    ```
-
-8. **Install dependencies from `requirements.txt`:**
-    ```bash
-    pip install -r requirements.txt
-    ```
-
-9. **Manually compile OpenCV to support GStreamer:**
-
-    - **Download and install CMake v4.0.0:**
-        - [CMake Download Page](https://cmake.org/download/)
-        - Select the Windows x64 Installer: `cmake-4.0.0-windows-x86_64.msi`
-        - During installation, check the box to add CMake to system PATH
-
-    - **Download OpenCV v4.7.0 and OpenCV Contrib**
-        - Place them anywhere on your system
-        - Inside the OpenCV folder, create a new folder named `build`
-
-    - **Install GStreamer v1.24.12:**
-        - [GStreamer 1.24.12 (Windows, MSVC)](https://gstreamer.freedesktop.org/data/pkg/windows/1.24.12/msvc/)
-        - Download and install:
-            - `gstreamer-1.0-msvc-x86_64-1.24.12.msi`
-            - `gstreamer-1.0-devel-msvc-x86_64-1.24.12.msi`
-        - Add the `GStreamer\bin` directory to your system PATH
-
-    - **Install FFmpeg** from [FFmpeg Builds](https://www.gyan.dev/ffmpeg/builds/)
-
-    - **Install Visual Studio 17 2022** from [Visual Studio Website](https://visualstudio.microsoft.com/)
-
-    - **Compile OpenCV with CMake GUI:**
-        1. Open CMake GUI
-        2. Set:
-            - Source folder: OpenCV root
-            - Build folder: `build` folder you created
-        3. Click `Configure`
-           ![Step 1](assets/images/tut01.png)
-        4. Select compiler: **Visual Studio 17**, click `Finish`
-        6. After initial configuration:
-            - In the `WITH` section, enable relevant options (e.g., `WITH_GSTREAMER`, `WITH_PYTHON`)
-            - If `WITH_PYTHON` is missing, add it manually via `Add Entry`
-        7. In the `BUILD` section, enable required modules
-        8. In the `ENABLE` section, disable `ENABLE_SOLUTION_FOLDERS`
-        9. Ensure GStreamer fields are filled (edit manually if necessary)
-        10. Ensure Python fields are correctly set (ignore `PYTHON_DEBUG_LIBRARY`)
-        11. Add `OPENCV_EXTRA_MODULES_PATH` (point to `opencv_contrib/modules`)
-        12. Click `Configure` again. Confirm:
-            - GStreamer shows `YES`
-            - Python paths are correct
-        13. Click `Generate` to create `OpenCV.sln`
-        14. Click `Open Project` to launch in Visual Studio
-        15. Set build type to `Release`
-        16. Right-click the solution → `Build`
-        17. After that, right-click `INSTALL` → `Build` again
-
-    - **Copy the compiled OpenCV to your virtual environment:**
-        - Copy the `cv2` folder to:
-            ```
-            BachelorGUI2025\Backend\myenv\Lib\site-packages
-            ```
-
-    - **Verify the OpenCV installation:**
-        ```bash
-        python -c "import cv2; print(cv2.__version__)"
-        ```
-        - If you see a version number, it worked!
-
-10. **Install Node.js (v18), npm, and .NET (v8 or newer):**
-    ```bash
-    sudo apt install nodejs npm
-    sudo apt install dotnet-sdk-8.0
-    ```
-
-11. **Restore and build the backend:**
-    ```bash
-    cd Backend
     dotnet restore
     dotnet build
     ```
 
-12. **Run the backend:**
+12. **Start the backend:**
     ```bash
     dotnet run
     ```
 
 13. **Start the frontend:**
-    - Navigate to the `GUI-Frontend` folder
-    - Run:
-        ```bash
-        npm i
-        npm start
-        ```
+
+    - Navigate to the `GUI-Frontend` folder.
+
+    - Install dependencies:
+      ```bash
+      npm i
+      ```
+
+    - Start frontend:
+      ```bash
+      npm start
+      ```
+
 </details>
 
