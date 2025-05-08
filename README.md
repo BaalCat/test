@@ -7,7 +7,7 @@ A cross-platform graphical interface and backend system for processing and strea
 ## 📖 Table of Contents
 
 - [Prerequisites](#-prerequisites)
-- [Installation](#-installation)
+- [Setup Guides](#-setup-guides)
   - [🐧 Linux (Ubuntu/Debian) Setup](#linux-ubuntudebian-setup)
   - [🪟 Windows Setup](#windows-setup)
 - [Usage](#-usage)
@@ -32,9 +32,9 @@ A cross-platform graphical interface and backend system for processing and strea
 
 ### Linux (Ubuntu/Debian) Setup
 
-1. Download the GUI project from the repository.
+1. **Download the GUI project from the repository.**
 
-2. Open a terminal and run the following commands (Skip any step you've already completed):
+2. **Open a terminal and run the following commands (Skip any step you've already completed):**
 
    ```bash
    sudo apt update
@@ -46,7 +46,7 @@ A cross-platform graphical interface and backend system for processing and strea
    sudo apt-get install gcc g++
    ```
 
-3. Install GTK, camera, and media support:
+3. **Install GTK, camera, and media support:**
 
    ```bash
    sudo apt-get install libavcodec-dev libavformat-dev libswscale-dev
@@ -59,38 +59,38 @@ A cross-platform graphical interface and backend system for processing and strea
    sudo apt-get install libwebp-dev
    ```
 
-4. Verify Python version:
+4. **Verify Python version:**
 
    ```bash
    python3.7 --version
    ```
 
-5. Navigate to the project backend:
+5. **Navigate to the project backend:**
 
    ```bash
    cd BachelorGUI2025/Backend
    ```
 
-6. Create and activate a virtual environment:
+6. **Create and activate a virtual environment:**
 
    ```bash
    python3.7 -m venv myenv
    source myenv/bin/activate
    ```
 
-7. Navigate to the Python scripts:
+7. **Navigate to the Python scripts:**
 
    ```bash
    cd PythonScripts
    ```
 
-8. Install Python dependencies:
+8. **Install Python dependencies:**
 
    ```bash
    pip install -r requirements.txt
    ```
 
-9. Install GStreamer:
+9. **Install GStreamer:**
 
    ```bash
    sudo apt install gstreamer1.0-tools gstreamer1.0-plugins-base \
@@ -99,28 +99,28 @@ A cross-platform graphical interface and backend system for processing and strea
    libgstreamer1.0-dev
    ```
 
-10. Install FFmpeg:
+10. **Install FFmpeg:**
 
     ```bash
     sudo apt install ffmpeg
     ```
 
-11. Manually compile OpenCV:
+11. **Manually compile OpenCV:**
 
-    - Install CMake and CMake GUI:
+    - **Install CMake and CMake GUI (version 4.0.0):**
 
       ```bash
       sudo apt-get install cmake
       sudo apt-get install cmake-qt-gui
       ```
 
-    - To open CMake later:
+    - **To open CMake later:**
 
       ```bash
       cmake-gui
       ```
 
-    - Download and set up OpenCV 4.7.0 and Contrib:
+    - **Download and set up OpenCV 4.7.0 and Contrib:**
 
       ```bash
       mkdir ~/opencv_build && cd ~/opencv_build
@@ -130,51 +130,52 @@ A cross-platform graphical interface and backend system for processing and strea
       mkdir build && cd build
       ```
 
-    - Open CMake GUI **from a terminal where the virtual environment is active**.
+    - **Open CMake GUI **from a terminal where the virtual environment is active**.**
 
-    - In CMake GUI:
+    - **In CMake GUI:**
         - Set the source code path to the `opencv` folder.
         - Set the build path to the `opencv/build` folder.
         - Add `OPENCV_EXTRA_MODULES_PATH` pointing to `opencv_contrib/modules`.
 
-    - Click **Configure** and verify the GStreamer and Python fields are set correctly.
+    - Click **Configure** and verify the GStreamer and Python fields are set correctly (as shown in the image under).
 
-    > 🖼️ *Insert image here: opencv_linux2.png* (Example of correct CMake configuration)
+    ![configure result](assets/images/linx02.png)
 
-    - Choose the generator (e.g., `Unix Makefiles`).
+    - **Choose the generator (e.g., `Unix Makefiles`).**
 
-    - Build OpenCV:
+    - **Build OpenCV:**
+      - Open a terminal, navigate to the build directory, and run 
 
       ```bash
       make -j4
       ```
 
-    - Install OpenCV:
+    - **Install OpenCV:**
 
       ```bash
       sudo make install
       ```
 
-    - Copy the `cv2` folder to your virtual environment:
+    - **Copy the `cv2` folder to your virtual environment:**
 
       ```bash
       cp -r cv2 ~/BachelorGUI2025/Backend/myenv/lib/site-packages
       ```
 
-    - Verify installation:
+    - **Verify installation:**
 
       ```bash
       python -c "import cv2; print(cv2.__version__)"
       ```
 
-12. Install Node.js, npm, and .NET 8:
+12. **Install Node.js, npm, and .NET 8:**
 
     ```bash
     sudo apt install nodejs npm
     sudo apt install dotnet-sdk-8.0
     ```
 
-13. Build and run the backend:
+13. **Build and run the backend:**
 
     ```bash
     cd Backend
@@ -183,11 +184,12 @@ A cross-platform graphical interface and backend system for processing and strea
     dotnet run
     ```
 
-14. Start the frontend:
+14. **Start the frontend:**
 
     ```bash
     cd ../GUI-Frontend
     npm i
+    npm run package
     npm start
     ```
 
@@ -198,8 +200,7 @@ A cross-platform graphical interface and backend system for processing and strea
 
 ### Windows Setup
 
-1. **Download the GUI project from the UiS SubSea repo on Github:**
-   - Link: [Your Repo Link Here](https://github.com/UiS-SubSea/your-repo-name)
+1. **Download the GUI project from the repository.**
 
 2. **Download Python version 3.7.0**
    - Go to the [Python 3.7.0 Release Page](https://www.python.org/downloads/release/python-370/)
@@ -237,7 +238,8 @@ A cross-platform graphical interface and backend system for processing and strea
 9. **Manually compile OpenCV with GStreamer support:**
 
    - **Download and install CMake 4.0.0** from the [CMake Download Page](https://cmake.org/download/)
-   - Choose: `cmake-4.0.0-windows-x86_64.msi`
+   - Select the appropriate version for your system, e.g., Windows x64 Installer: `cmake-4.0.0-windows-x86_64.msi`
+   - Run the installer and ensure that the option to add CMake to the system PATH is checked during installation.
 
    - **Download OpenCV 4.7.0 and OpenCV Contrib**, and create a `build` folder inside the OpenCV directory.
 
@@ -253,59 +255,49 @@ A cross-platform graphical interface and backend system for processing and strea
    - **Install Visual Studio 2022 (version 17)** from [Visual Studio](https://visualstudio.microsoft.com/)
 
    - **Compile OpenCV using CMake GUI:**
-      1) Open `CMake-gui`
-      2) Set "Browse Source..." to the OpenCV folder.
-      3) Set "Browse Build..." to the `build` folder.
+     1. Open `CMake-gui` and Set "Browse Source..." to the OpenCV folder.
+     2. Set "Browse Build..." to the `build` folder.
+     4. Click **Configure**.
+     
 
      ![Step 1-3 in CMake](assets/images/tut01.png)
 
-     4. Click **Configure**, choose *Visual Studio 17*, then **Finish**.
+     4. Choose *Visual Studio 17*, then **Finish**.
 
-     <div align="center">
-       <img src="assets/images/tut02.png" alt="Step 4 compiler selection" width="600"/>
-     </div>
+     ![Step 4](assets/images/tut02.png)
 
      5. Wait for analysis to complete. Red entries will appear.
 
-     6. Expand the `WITH` section, enable necessary features.
+     6. Expand the `WITH` section, enable necessary features (see image under for what was used, (if `WITH_PYTHON` isn’t present, you can add it manually
+using the `Add Entry` button).
 
-     <div align="center">
-       <img src="assets/images/tut03.png" alt="WITH configuration 1" width="600"/>
-       <img src="assets/images/tut04.png" alt="WITH configuration 2" width="600"/>
-     </div>
+     ![Step 6](assets/images/tut03.png)
+     ![Step 6](assets/images/tut04.png)
 
      7. Expand the `BUILD` section and adjust as needed.
 
-     <div align="center">
-       <img src="assets/images/tut05.png" alt="BUILD config 1" width="600"/>
-       <img src="assets/images/tut06.png" alt="BUILD config 2" width="600"/>
-     </div>
+     ![Step 7](assets/images/tut05.png)
+     ![Step 7](assets/images/tut06.png)
 
-     8. Expand `ENABLE`, disable `ENABLE_SOLUTION_FOLDERS`.
+     8. Expand `ENABLE`, disable `ENABLE_SOLUTION_FOLDERS` and adjust as needed.
 
-     <div align="center">
-       <img src="assets/images/tut07.png" alt="ENABLE configuration" width="600"/>
-     </div>
+     ![Step 8](assets/images/tut07.png)
 
-     9. Ensure GStreamer fields are present and set correctly.
+     9. Ensure GStreamer fields are present and set correctly, If they are not visible, manually add them. If they are present but have no path, set the correct path to
+where GStreamer is installed..
 
-     <div align="center">
-       <img src="assets/images/tut08.png" alt="GStreamer configuration" width="600"/>
-     </div>
+     ![Step 9](assets/images/tut08.png)
 
      10. Check the `PYTHON3` field paths.
 
-     <div align="center">
-       <img src="assets/images/tut09.png" alt="Python3 configuration" width="600"/>
-     </div>
+     ![Step 10](assets/images/tut09.png)
 
      11. Add `OPENCV_EXTRA_MODULES_PATH` pointing to the OpenCV Contrib modules folder.
 
-     12. Click **Configure** again. Scroll the log window to check for `YES` next to GStreamer.
+     12. Click **Configure** again. Scroll the log window to check for `YES` next to GStreamer. If `NO` appears, troubleshoot and adjust the settings. Also, verify that the Python 3 fields have the correct paths. If any fields are missing or have blank paths, OpenCV will not be configured for Python, which is necessary.
 
-     <div align="center">
-       <img src="assets/images/tut11.png" alt="Final configuration result" width="600"/>
-     </div>
+
+     ![Step 12](assets/images/tut11.png)
 
      13. If all is good, click **Generate**, then **Open Project**.
 
@@ -315,11 +307,9 @@ A cross-platform graphical interface and backend system for processing and strea
 
      16. Once done, right-click **INSTALL** and build it. This installs OpenCV-Python.
 
-     <div align="center">
-       <img src="assets/images/tut12.png" alt="Visual Studio Build steps" width="600"/>
-     </div>
+     ![Step 16](assets/images/tut12.png)
 
-     17. Copy the `cv2` folder from OpenCV into your virtual environment:
+     17. After the installation, OpenCV will be in the folder specified in the installation path. Copy the `cv2` folder into your virtual environment:
      ```
      BachelorGUI2025\Backend\myenv\Lib\site-packages
      ```
@@ -330,10 +320,9 @@ A cross-platform graphical interface and backend system for processing and strea
      ```
 
 10. **Install Node.js (v18+), npm, and .NET (v8+):**
-    > ⚠️ Replace `sudo apt` with Windows installers — this was meant for Linux.
 
-    - Download [Node.js 18](https://nodejs.org/en/)
-    - Install [.NET SDK 8.0](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
+    - [Node.js 18](https://nodejs.org/en/)
+    - [.NET SDK 8.0](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
 
 11. **Navigate to the Backend folder and run:**
     ```bash
@@ -353,6 +342,7 @@ A cross-platform graphical interface and backend system for processing and strea
     - Install dependencies:
       ```bash
       npm i
+      npm run package
       ```
 
     - Start frontend:
@@ -361,4 +351,3 @@ A cross-platform graphical interface and backend system for processing and strea
       ```
 
 </details>
-
