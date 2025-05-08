@@ -194,7 +194,7 @@ A cross-platform graphical interface and backend system for processing and strea
 </details>
 
 <details>
-<summary><strong>🔧 Linux (Ubuntu/Debian) Setup Guide</strong></summary>
+<summary><strong>🔧 Windows Setup Guide</strong></summary>
 
 ### Windows Setup
 
