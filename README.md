@@ -258,7 +258,7 @@ A cross-platform graphical interface and backend system for processing and strea
      2. Set "Browse Source..." to the OpenCV folder.
      3. Set "Browse Build..." to the `build` folder.
 
-  <div align="center">
+  <div>
     <img src="assets/images/tut01.png" alt="Step 1-3 in CMake" width="600"/>
   </div>
 
