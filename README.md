@@ -253,7 +253,6 @@ A cross-platform graphical interface and backend system for processing and strea
    - **Install Visual Studio 2022 (version 17)** from [Visual Studio](https://visualstudio.microsoft.com/)
 
    - **Compile OpenCV using CMake GUI:**
-
      1. Open `CMake-gui`
      2. Set "Browse Source..." to the OpenCV folder.
      3. Set "Browse Build..." to the `build` folder.
