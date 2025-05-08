@@ -12,10 +12,14 @@ sudo apt update
 sudo apt install -y ...
 </details> <details> <summary><strong>🪟 Windows Setup</strong></summary>
 Windows Setup
-Step-by-step instructions...
+```bash
+sudo apt update
+sudo apt install -y ...
 
 </details> <details> <summary><strong>🍎 macOS Setup</strong></summary>
 macOS Setup
-Instructions here...
+```bash
+sudo apt update
+sudo apt install -y ...
 
 </details> ```
