@@ -1,3 +1,8 @@
+## 📖 Setup Guides
+
+- [Linux Setup Guide](./test.md)
+
+
 # 🛠️ BachelorGUI2025 – SubSea GUI System
 
 A cross-platform graphical interface and backend system for processing and streaming media in real time using Python, OpenCV, .NET, and Node.js.
