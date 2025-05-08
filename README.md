@@ -262,23 +262,24 @@ A cross-platform graphical interface and backend system for processing and strea
             - Source folder: OpenCV root
             - Build folder: `build` folder you created
         3. Click `Configure`
+           ![Step 1](assets/images/tut01.png)
         4. Select compiler: **Visual Studio 17**, click `Finish`
-        5. After initial configuration:
+        6. After initial configuration:
             - In the `WITH` section, enable relevant options (e.g., `WITH_GSTREAMER`, `WITH_PYTHON`)
             - If `WITH_PYTHON` is missing, add it manually via `Add Entry`
-        6. In the `BUILD` section, enable required modules
-        7. In the `ENABLE` section, disable `ENABLE_SOLUTION_FOLDERS`
-        8. Ensure GStreamer fields are filled (edit manually if necessary)
-        9. Ensure Python fields are correctly set (ignore `PYTHON_DEBUG_LIBRARY`)
-        10. Add `OPENCV_EXTRA_MODULES_PATH` (point to `opencv_contrib/modules`)
-        11. Click `Configure` again. Confirm:
+        7. In the `BUILD` section, enable required modules
+        8. In the `ENABLE` section, disable `ENABLE_SOLUTION_FOLDERS`
+        9. Ensure GStreamer fields are filled (edit manually if necessary)
+        10. Ensure Python fields are correctly set (ignore `PYTHON_DEBUG_LIBRARY`)
+        11. Add `OPENCV_EXTRA_MODULES_PATH` (point to `opencv_contrib/modules`)
+        12. Click `Configure` again. Confirm:
             - GStreamer shows `YES`
             - Python paths are correct
-        12. Click `Generate` to create `OpenCV.sln`
-        13. Click `Open Project` to launch in Visual Studio
-        14. Set build type to `Release`
-        15. Right-click the solution → `Build`
-        16. After that, right-click `INSTALL` → `Build` again
+        13. Click `Generate` to create `OpenCV.sln`
+        14. Click `Open Project` to launch in Visual Studio
+        15. Set build type to `Release`
+        16. Right-click the solution → `Build`
+        17. After that, right-click `INSTALL` → `Build` again
 
     - **Copy the compiled OpenCV to your virtual environment:**
         - Copy the `cv2` folder to:
