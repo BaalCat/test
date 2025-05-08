@@ -192,3 +192,130 @@ A cross-platform graphical interface and backend system for processing and strea
     ```
 
 </details>
+
+<details>
+<summary><strong>🔧 Linux (Ubuntu/Debian) Setup Guide</strong></summary>
+
+### Windows Setup
+
+1. **Download the GUI project from the UiS SubSea repo on Github:**
+    - Link: [Your Repo Link Here](https://github.com/UiS-SubSea/your-repo-name)
+
+2. **Download Python version 3.7.0**
+    - Visit the [Python 3.7.0 Release Page](https://www.python.org/downloads/release/python-370/)
+    - Download the installer for your Windows version (e.g., *Windows x86-64 executable installer*)
+    - Run the installer and **make sure to check** the “Add Python to PATH” option during installation
+
+3. **Install NumPy in Python 3.7** (required for compiling OpenCV)
+
+4. **Open the folder `BachelorGUI2025\Backend` in a terminal**
+
+5. **Create a virtual environment:**
+    ```bash
+    python3.7 -m venv myenv
+    ```
+
+6. **Activate the virtual environment:**
+    ```bash
+    .\myenv\Scripts\activate
+    ```
+    To deactivate later:
+    ```bash
+    deactivate
+    ```
+
+7. **Navigate to the `PythonScripts` folder:**
+    ```bash
+    cd PythonScripts
+    ```
+
+8. **Install dependencies from `requirements.txt`:**
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+9. **Manually compile OpenCV to support GStreamer:**
+
+    - **Download and install CMake v4.0.0:**
+        - [CMake Download Page](https://cmake.org/download/)
+        - Select the Windows x64 Installer: `cmake-4.0.0-windows-x86_64.msi`
+        - During installation, check the box to add CMake to system PATH
+
+    - **Download OpenCV v4.7.0 and OpenCV Contrib**
+        - Place them anywhere on your system
+        - Inside the OpenCV folder, create a new folder named `build`
+
+    - **Install GStreamer v1.24.12:**
+        - [GStreamer 1.24.12 (Windows, MSVC)](https://gstreamer.freedesktop.org/data/pkg/windows/1.24.12/msvc/)
+        - Download and install:
+            - `gstreamer-1.0-msvc-x86_64-1.24.12.msi`
+            - `gstreamer-1.0-devel-msvc-x86_64-1.24.12.msi`
+        - Add the `GStreamer\bin` directory to your system PATH
+
+    - **Install FFmpeg** from [FFmpeg Builds](https://www.gyan.dev/ffmpeg/builds/)
+
+    - **Install Visual Studio 17 2022** from [Visual Studio Website](https://visualstudio.microsoft.com/)
+
+    - **Compile OpenCV with CMake GUI:**
+        1. Open CMake GUI
+        2. Set:
+            - Source folder: OpenCV root
+            - Build folder: `build` folder you created
+        3. Click `Configure`
+        4. Select compiler: **Visual Studio 17**, click `Finish`
+        5. After initial configuration:
+            - In the `WITH` section, enable relevant options (e.g., `WITH_GSTREAMER`, `WITH_PYTHON`)
+            - If `WITH_PYTHON` is missing, add it manually via `Add Entry`
+        6. In the `BUILD` section, enable required modules
+        7. In the `ENABLE` section, disable `ENABLE_SOLUTION_FOLDERS`
+        8. Ensure GStreamer fields are filled (edit manually if necessary)
+        9. Ensure Python fields are correctly set (ignore `PYTHON_DEBUG_LIBRARY`)
+        10. Add `OPENCV_EXTRA_MODULES_PATH` (point to `opencv_contrib/modules`)
+        11. Click `Configure` again. Confirm:
+            - GStreamer shows `YES`
+            - Python paths are correct
+        12. Click `Generate` to create `OpenCV.sln`
+        13. Click `Open Project` to launch in Visual Studio
+        14. Set build type to `Release`
+        15. Right-click the solution → `Build`
+        16. After that, right-click `INSTALL` → `Build` again
+
+    - **Copy the compiled OpenCV to your virtual environment:**
+        - Copy the `cv2` folder to:
+            ```
+            BachelorGUI2025\Backend\myenv\Lib\site-packages
+            ```
+
+    - **Verify the OpenCV installation:**
+        ```bash
+        python -c "import cv2; print(cv2.__version__)"
+        ```
+        - If you see a version number, it worked!
+
+10. **Install Node.js (v18), npm, and .NET (v8 or newer):**
+    ```bash
+    sudo apt install nodejs npm
+    sudo apt install dotnet-sdk-8.0
+    ```
+
+11. **Restore and build the backend:**
+    ```bash
+    cd Backend
+    dotnet restore
+    dotnet build
+    ```
+
+12. **Run the backend:**
+    ```bash
+    dotnet run
+    ```
+
+13. **Start the frontend:**
+    - Navigate to the `GUI-Frontend` folder
+    - Run:
+        ```bash
+        npm i
+        npm start
+        ```
+</details>
+
